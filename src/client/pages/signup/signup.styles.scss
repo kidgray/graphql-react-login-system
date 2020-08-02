@@ -1,0 +1,21 @@
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 25rem;
+    text-align: right;
+    font-size: 2rem;
+    margin: 0 1rem 0 0;
+    padding: 1rem 0 0 30rem;
+}
+
+.signup-form__input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .1rem solid #ccc;
+    border-radius: .4rem;
+    box-sizing: border-box;
+    margin: .8rem 0;
+    padding: 1.2rem 2rem;
+}

@@ -49,12 +49,23 @@ const SignUpPage = () => {
             <p>Please enter the following data: </p>
 
             <form className='signup-form' onSubmit={handleSubmit}>
-                Email: <input type='input' className='signup-form__input' name='email' placeholder: 'Email'
-                Username: <input type='input' className='signup-form__input' name='username' placeholder='Username' />
-                First Name: <input type='input' className='signup-form__input' name='firstName' placeholder='First Name' />
-                Last Name: <input type='input' className='signup-form__input' name='lastName' placeholder='Last Name' />
-                Password: <input type='input' className='signup-form__input' name='password' placeholder='Password' />
-                Confirm Password: <input type='input' className='signup-form__input' name='confirmPassword' placeholder='Confirm Password' />
+                <label htmlFor='email'>Email:</label>
+                <input type='input' className='signup-form__input' name='email' placeholder='Email' />
+                
+                <label htmlFor='username'>Username:</label>
+                <input type='input' className='signup-form__input' name='username' placeholder='Username' />
+                
+                <label htmlFor='firstName'>First Name:</label>
+                <input type='input' className='signup-form__input' name='firstName' placeholder='First Name' />
+                
+                <label htmlFor='lastName'>Last Name:</label>
+                <input type='input' className='signup-form__input' name='lastName' placeholder='Last Name' />
+                
+                <label htmlFor='password'>Password:</label>
+                <input type='input' className='signup-form__input' name='password' placeholder='Password' />
+                
+                <label htmlFor='confirmPassword'>Confirm Password:</label>
+                <input type='input' className='signup-form__input' name='confirmPassword' placeholder='Confirm Password' />
 
                 
                 <button className='button'>Register!</button>

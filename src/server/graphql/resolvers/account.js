@@ -2,7 +2,7 @@
 const { UserInputError } = require('apollo-server');
 
 const Account = require('../../models/Account');
-const { validateRegistrationInput, validateLoginInput } = require('../../utils/validators');
+const { validateRegistrationInput, validateLoginInput } = require('../../../utils/validators');
 
 module.exports = {
     Mutation: {

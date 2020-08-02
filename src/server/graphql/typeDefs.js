@@ -34,7 +34,7 @@ const typeDefs = gql`
     }
 
     # The "Query" type lists all available queries that clients
-    # can execute, along with the return types of those queries 
+    # can execute, along with the return types of those queries
     type Query {
         sayHi: String!
     }

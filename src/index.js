@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // STYLES
-import './styles/styles.scss';
+import './client/styles/styles.scss';
 
 // COMPONENTS
-import App from './components/index';
+import ApolloApp from './client/components/index';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ApolloApp />, document.getElementById('root'));

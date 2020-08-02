@@ -10,6 +10,7 @@
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "apollo-link-http": "^1.5.17",
     "apollo-server": "^2.16.1",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.0",
@@ -20,6 +21,7 @@
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
@@ -30,6 +32,6 @@
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev-server": "webpack-dev-server",
-    "apollo-server": "nodemon ./src/server.js"
+    "apollo-server": "nodemon ./src/server/server.js"
   }
 }
