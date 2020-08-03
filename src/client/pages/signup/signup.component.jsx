@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
-const SignUpPage = () => {
+const SignUpPage = (props) => {
     // State Hook for the registration fields
     const [fields, setFields] = useState({
         email: '',
@@ -12,42 +14,82 @@ const SignUpPage = () => {
     });
 
     // State Hook for errors that occur during registration
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState({});
+
+    // GraphQL Mutation for registering new accounts
+    const REGISTER_ACCT = gql`
+        mutation register(
+            $email: String!
+            $username: String!
+            $firstName: String!
+            $lastName: String!
+            $password: String!
+            $confirmPassword: String!
+        ) {
+            register(
+                registrationInput: {
+                    email: $email
+                    username: $username
+                    firstName: $firstName
+                    lastName: $lastName
+                    password: $password
+                    confirmPassword: $confirmPassword
+                }
+            ) {
+                id
+                email
+                username
+                firstName
+                lastName
+            }
+        }
+    `;
+
+    // Mutation Hook for registering new users. useMutation()
+    // takes an optional second argument. In it, you can pass
+    // an update function which can modify the Apollo Client cache data
+    // to match the modifications made to the back-end, as well as the variables
+    // property, which allows you to specify GraphQL variables that the mutation needs
+    // (In this case, that's just the registration fields).
+    const [ registerAcct, { loading } ] = useMutation(REGISTER_ACCT, {
+        update(proxy, result) {
+            //console.log(result);
+
+            // Redirect user to their newly created Account page
+            props.history.push({
+                pathname: '/account',
+                state: {
+                    firstName: fields.firstName,
+                    lastName: fields.lastName
+                }
+            });
+        },
+        onError(err) {
+            //console.log(err.graphQLErrors[0].extensions.exception.errors);
+
+            // The first item in the graphQLErrors object
+            // contains the properties we need (check the 
+            // docs). Populate the errors state variable here.
+            setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        },
+        variables: fields
+    });
+
+    const onChange = (event) => {
+        // Make sure to use functional setFields to account
+        // for asynchronous nature of the state mutator function
+        // Also use computed property keys here to make the function
+        // applicable to all fields
+       setFields({
+           ...fields,
+           [event.target.name]: event.target.value
+       });
+    }
 
     const handleSubmit = (event) => {
         // Prevent default form submission behavior
         event.preventDefault();
-
-        // Extract the user's desired acct. info from their
-        // respective input fields in the form, making sure we
-        // remove all whitespace from both ends of the string
-        const email = event.target.elements.email.value.trim();
-        const username = event.target.elements.username.value.trim();
-        const firstName = event.target.elements.firstName.value.trim();
-        const lastName = event.target.elements.lastName.value.trim();
-        const password = event.target.elements.password.value.trim();
-        const confirmPassword = event.target.elements.confirmPassword.value.trim();
-
-        // If any of the input fields were left blank
-        if (!email || !username || !firstName || !lastName || !password || !confirmPassword) {
-            // Set the error state, causing the page to re-render and 
-            // display the error to the user
-            setError(() => 'One or more fields were left blank! Please fill out all the fields.');
-        }
-
-        // Here's where we should check whether the username already exists in the database.
-        // If it does, then let the user know and set an error.
-
-        // AT THIS POINT WE ASSUME THERE WERE NO ERRORS. 
-        // Create a new account object. This will be sent to the Database later.
-        const newAcct = {
-            email,
-            username,
-            firstName,
-            lastName,
-            password,
-            confirmPassword
-        };
+        registerAcct();
     }
 
     return (
@@ -58,9 +100,13 @@ const SignUpPage = () => {
 
             <hr />
 
-            { error && <p className='lead signup-error'>{ error }</p> }
+            { 
+                Object.keys(errors).length > 0 && (
+                    Object.values(errors).map(error => <p key={error} className='lead signup-error'>{ error }</p>)
+                )
+            }
 
-            <div className="form-div">
+            <div className={loading ? "spinner-border spinner-size" : "form-div"}>
                 <form className='' onSubmit={handleSubmit}>
                     <div className="form-group row">
                         <label htmlFor="inputEmail" className="col-sm-2 col-form-label">Email</label>
@@ -70,7 +116,8 @@ const SignUpPage = () => {
                                 className="form-control signup-form__input" 
                                 name="email" 
                                 id="inputEmail" 
-                                placeholder="Email" 
+                                placeholder="Email"
+                                onChange={onChange}
                             />
                         </div>
                     </div>
@@ -81,8 +128,10 @@ const SignUpPage = () => {
                             <input 
                                 type="text" 
                                 className="form-control signup-form__input" 
-                                id="inputUsername" 
-                                placeholder="Username" 
+                                id="inputUsername"
+                                name='username'
+                                placeholder="Username"
+                                onChange={onChange} 
                             />
                         </div>
                     </div>
@@ -95,7 +144,8 @@ const SignUpPage = () => {
                                 className="form-control signup-form__input" 
                                 name="firstName" 
                                 id="inputFirstName" 
-                                placeholder="First Name" 
+                                placeholder="First Name"
+                                onChange={onChange}
                             />
                         </div>
                     </div>
@@ -108,7 +158,8 @@ const SignUpPage = () => {
                                 className="form-control signup-form__input" 
                                 name="lastName" 
                                 id="inputLastName" 
-                                placeholder="Last Name" 
+                                placeholder="Last Name"
+                                onChange={onChange}
                             />
                         </div>
                     </div>
@@ -119,9 +170,10 @@ const SignUpPage = () => {
                             <input 
                                 type="password" 
                                 className="form-control signup-form__input" 
-                                name="Password" 
+                                name="password" 
                                 id="inputPassword" 
-                                placeholder="Password" 
+                                placeholder="Password"
+                                onChange={onChange}
                             />
                         </div>
                     </div>
@@ -134,7 +186,8 @@ const SignUpPage = () => {
                                 className="form-control signup-form__input" 
                                 name="confirmPassword" 
                                 id="inputConfirmPassword" 
-                                placeholder="Confirm Password" 
+                                placeholder="Confirm Password"
+                                onChange={onChange} 
                             />
                         </div>
                     </div>

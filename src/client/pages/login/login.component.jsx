@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const LoginPage = () => {
     // State Hook for errors that might occur during login (incorrect info, etc)
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = (event) => {
         // Prevent default form entry
@@ -15,7 +15,7 @@ const LoginPage = () => {
 
         // If either of the fields was left blank
         if (!username || !password) {
-            setError(() => 'One or more fields is blank. Please fill out both fields!');
+            setErrors(() => 'One or more fields is blank. Please fill out both fields!');
         }
 
         // Create an account object that will be checked against the Database
@@ -35,7 +35,11 @@ const LoginPage = () => {
 
             <hr />
 
-            { error && <p className='lead login-error'>{ error }</p> }
+            { 
+                Object.keys(errors).length > 0 && (
+                    Object.values(errors).map(error => <p key={error} className='lead signup-error'>{ error }</p>)
+                )
+            }
 
             <div className="form-div">
                 <form className='' onSubmit={handleSubmit}>
