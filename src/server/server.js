@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server');
+const cors = require('cors');
 
 const { MONGODB_CONN_STRING } = require('../../config.js');
 const typeDefs = require('./graphql/typeDefs');

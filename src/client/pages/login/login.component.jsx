@@ -1,31 +1,72 @@
 import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+    // State Hook for the Login Fields.
+    const [fields, setFields] = useState({
+        username: '',
+        password: ''
+    });
+
     // State Hook for errors that might occur during login (incorrect info, etc)
     const [errors, setErrors] = useState({});
+
+    // GraphQL Mutation for logging in to an account
+    const LOGIN_ACCT = gql`
+        mutation login(
+            $username: String!
+            $password: String!
+        ) {
+            login(
+                loginInput: {
+                    username: $username
+                    password: $password
+                }
+            ) {
+                id
+                email
+                username
+                firstName
+                lastName
+            }
+        }
+    `;
+
+    // Mutation Hook for logging in users.
+    const [loginAcct, { loading }] = useMutation(LOGIN_ACCT, {
+        update(proxy, result) {
+            // Redirect user to their newly created Account page
+            props.history.push({
+                pathname: '/account',
+                state: {
+                    firstName: fields.firstName,
+                    lastName: fields.lastName
+                }
+            });
+        },
+        onError(err) {
+            // Populate errors object
+            setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        },
+        variables: fields
+    })
 
     const handleSubmit = (event) => {
         // Prevent default form entry
         event.preventDefault();
 
-        // Extract the user's login info from their respective
-        // fields
-        const username = event.target.elements.username.value.trim();
-        const password = event.target.elements.password.value.trim();
+        // Execute the loginAcct mutation
+        loginAcct();
+    };
 
-        // If either of the fields was left blank
-        if (!username || !password) {
-            setErrors(() => 'One or more fields is blank. Please fill out both fields!');
-        }
-
-        // Create an account object that will be checked against the Database
-        const acct = {
-            username,
-            password
-        };
-
-        // This is where we'd send the query
-    }
+    const onChange= (event) => {
+        // Same idea as the onChange function for
+        // the SignUp Component.
+        setFields({
+            ...fields,
+            [event.target.name]: event.target.value
+        });
+    };
 
     return (
         <div>
@@ -50,7 +91,9 @@ const LoginPage = () => {
                                 type="text" 
                                 className="form-control signup-form__input" 
                                 id="inputUsername" 
-                                placeholder="Username" 
+                                name="username"
+                                placeholder="Username"
+                                onChange={onChange}
                             />
                         </div>
                     </div>
@@ -61,9 +104,10 @@ const LoginPage = () => {
                             <input 
                                 type="password" 
                                 className="form-control signup-form__input" 
-                                name="Password" 
+                                name="password" 
                                 id="inputPassword" 
-                                placeholder="Password" 
+                                placeholder="Password"
+                                onChange={onChange}
                             />
                         </div>
                     </div>

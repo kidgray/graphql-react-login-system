@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { gql } from '@apollo/client';
-import { useMutation } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 
 const SignUpPage = (props) => {
     // State Hook for the registration fields
@@ -51,10 +50,8 @@ const SignUpPage = (props) => {
     // to match the modifications made to the back-end, as well as the variables
     // property, which allows you to specify GraphQL variables that the mutation needs
     // (In this case, that's just the registration fields).
-    const [ registerAcct, { loading } ] = useMutation(REGISTER_ACCT, {
+    const [registerAcct, { loading }] = useMutation(REGISTER_ACCT, {
         update(proxy, result) {
-            //console.log(result);
-
             // Redirect user to their newly created Account page
             props.history.push({
                 pathname: '/account',
@@ -65,8 +62,6 @@ const SignUpPage = (props) => {
             });
         },
         onError(err) {
-            //console.log(err.graphQLErrors[0].extensions.exception.errors);
-
             // The first item in the graphQLErrors object
             // contains the properties we need (check the 
             // docs). Populate the errors state variable here.
@@ -76,21 +71,21 @@ const SignUpPage = (props) => {
     });
 
     const onChange = (event) => {
-        // Make sure to use functional setFields to account
-        // for asynchronous nature of the state mutator function
-        // Also use computed property keys here to make the function
+        // Use computed property keys here to make the function
         // applicable to all fields
        setFields({
            ...fields,
            [event.target.name]: event.target.value
        });
-    }
+    };
 
     const handleSubmit = (event) => {
         // Prevent default form submission behavior
         event.preventDefault();
+
+        // Execute the registerAcct mutation
         registerAcct();
-    }
+    };
 
     return (
         <div>
