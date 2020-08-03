@@ -35,12 +35,14 @@ const LoginPage = (props) => {
     // Mutation Hook for logging in users.
     const [loginAcct, { loading }] = useMutation(LOGIN_ACCT, {
         update(proxy, result) {
-            // Redirect user to their newly created Account page
+            // Redirect user to their newly created Account page, making
+            // sure to pass the user's first name and last name (stored
+            // in the result of the loginAcct Mutation). 
             props.history.push({
                 pathname: '/account',
                 state: {
-                    firstName: fields.firstName,
-                    lastName: fields.lastName
+                    firstName: result.data.login.firstName,
+                    lastName: result.data.login.lastName
                 }
             });
         },

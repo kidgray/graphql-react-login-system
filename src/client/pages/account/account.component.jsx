@@ -2,7 +2,7 @@ import React from 'react';
 
 const AccountPage = (props) => {
     const firstName = props.location.state 
-                      ? props.location.state.firstName 
+                      ? `, ${props.location.state.firstName}`
                       : "";
 
     const lastName = props.location.state 

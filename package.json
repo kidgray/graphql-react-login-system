@@ -32,7 +32,7 @@
   "scripts": {
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "dev-server": "webpack-dev-server",
-    "apollo-server": "nodemon ./src/server/server.js"
+    "client": "webpack-dev-server",
+    "server": "node ./src/server/server.js"
   }
 }

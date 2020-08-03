@@ -1,2 +1,4 @@
 # graphql-react-login-system
-A basic Login/Register system built using React and GraphQL.
+A basic Login/Register system built using the MERNG stack (MongoDB, Express.js, React, Node.js, GraphQL).
+
+INSTALLATION:
