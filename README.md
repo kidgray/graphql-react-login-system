@@ -34,7 +34,7 @@ Please make sure these ports are available for use prior to executing it.
 
 You will need to open two separate terminals. Navigate to the root directory of the project folder on both of them.
 
-Select one of the two terminal tab and start the server by using the command:
+Select one of the two terminal tabs and start the server by using the command:
 
 ```yarn run server```
 
@@ -42,7 +42,7 @@ On the other terminal tab, start the client by using the command:
 
 ```yarn run client```
 
-On success, the client may be accessed at:
+Upon success, the client may be accessed at:
 
     http://localhost:8080
 
