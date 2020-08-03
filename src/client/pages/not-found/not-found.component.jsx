@@ -7,7 +7,9 @@ const NotFoundPage = (props) => {
             <hr />
             <p className="lead not-found-msg">The page you're looking for was not found.</p>
 
-            <button className="btn btn-primary not-found-button" onClick={() => props.history.push('/')}> Home </button>
+            <button className="btn btn-primary not-found-button" onClick={() => props.history.push('/')}> 
+                Home 
+            </button>
         </div>
     )
 };
