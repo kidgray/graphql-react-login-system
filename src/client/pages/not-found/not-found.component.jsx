@@ -1,10 +1,15 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const NotFoundPage = () => {
     return (
-        <div>
-            <h1>404: NOT FOUND</h1>
-            <h2>The page you're looking for was not found.</h2>
+        <div className="jumbotron">
+            <h1 className="display-4 not-found-header">404: NOT FOUND</h1>
+            <hr />
+            <p class="lead not-found-msg">The page you're looking for was not found.</p>
+
+            <button class="btn btn-primary not-found-button"> Home </button>
         </div>
     )
 };
