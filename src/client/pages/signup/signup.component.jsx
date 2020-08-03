@@ -42,34 +42,96 @@ const SignUpPage = () => {
 
     return (
         <div>
-            <h1>REGISTER AN ACCOUNT</h1>
+            <div className="row justify-content-center align-items-center">
+                <h1 className='register-header'>REGISTER AN ACCOUNT</h1>
+            </div>
+
+            <hr />
 
             { error && <p className='signup-error'>{ error }</p> }
 
-            <p>Please enter the following data: </p>
+            <div className="form-div">
+                <form className='' onSubmit={handleSubmit}>
+                    <div className="form-group row">
+                        <label htmlFor="inputEmail" className="col-sm-2 col-form-label">Email</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="text" 
+                                className="form-control signup-form__input" 
+                                name="email" 
+                                id="inputEmail" 
+                                placeholder="Email" 
+                            />
+                        </div>
+                    </div>
 
-            <form className='signup-form' onSubmit={handleSubmit}>
-                <label htmlFor='email'>Email:</label>
-                <input type='input' className='signup-form__input' name='email' placeholder='Email' />
-                
-                <label htmlFor='username'>Username:</label>
-                <input type='input' className='signup-form__input' name='username' placeholder='Username' />
-                
-                <label htmlFor='firstName'>First Name:</label>
-                <input type='input' className='signup-form__input' name='firstName' placeholder='First Name' />
-                
-                <label htmlFor='lastName'>Last Name:</label>
-                <input type='input' className='signup-form__input' name='lastName' placeholder='Last Name' />
-                
-                <label htmlFor='password'>Password:</label>
-                <input type='input' className='signup-form__input' name='password' placeholder='Password' />
-                
-                <label htmlFor='confirmPassword'>Confirm Password:</label>
-                <input type='input' className='signup-form__input' name='confirmPassword' placeholder='Confirm Password' />
+                    <div className="form-group row">
+                        <label htmlFor="inputUsername" className="col-sm-2 col-form-label">Username</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="text" 
+                                className="form-control signup-form__input" 
+                                id="inputUsername" 
+                                placeholder="Username" 
+                            />
+                        </div>
+                    </div>
 
-                
-                <button className='button'>Register!</button>
-            </form>
+                    <div className="form-group row">
+                        <label htmlFor="inputFirstName" className="col-sm-2 col-form-label">First Name</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="text" 
+                                className="form-control signup-form__input" 
+                                name="firstName" 
+                                id="inputFirstName" 
+                                placeholder="First Name" 
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="inputLastName" className="col-sm-2 col-form-label">Last Name</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="text" 
+                                className="form-control signup-form__input" 
+                                name="lastName" 
+                                id="inputLastName" 
+                                placeholder="Last Name" 
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="password" 
+                                className="form-control signup-form__input" 
+                                name="Password" 
+                                id="inputPassword" 
+                                placeholder="Password" 
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="inputConfirmPassword" className="col-sm-2 col-form-label">Confirm Password</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="password" 
+                                className="form-control signup-form__input" 
+                                name="confirmPassword" 
+                                id="inputConfirmPassword" 
+                                placeholder="Confirm Password" 
+                            />
+                        </div>
+                    </div>
+
+                    <button className='btn btn-primary btn-lg'>Register</button>
+                </form>
+            </div>
         </div>
     );
 };

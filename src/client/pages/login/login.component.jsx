@@ -29,13 +29,44 @@ const LoginPage = () => {
 
     return (
         <div>
-            <h1>LOGIN</h1>
-            <form className='login-form' onSubmit={handleSubmit}>
-                <input type='input' className='login-form__input' name='username' placeholder='Username' />
-                <input type='input' className='login-form__input' name='password' placeholder='Password' />
+            <div className="row justify-content-center align-items-center">
+                <h1 className='login-header'>LOGIN</h1>
+            </div>
 
-                <button className='button'>Login</button>
-            </form>
+            <hr />
+
+            { error && <p className='login-error'>{ error }</p> }
+
+            <div className="form-div">
+                <form className='' onSubmit={handleSubmit}>
+                    <div className="form-group row">
+                        <label htmlFor="inputUsername" className="col-sm-2 col-form-label">Username</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="text" 
+                                className="form-control signup-form__input" 
+                                id="inputUsername" 
+                                placeholder="Username" 
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
+                        <div className="col-sm-10">
+                            <input 
+                                type="password" 
+                                className="form-control signup-form__input" 
+                                name="Password" 
+                                id="inputPassword" 
+                                placeholder="Password" 
+                            />
+                        </div>
+                    </div>
+
+                    <button className='btn btn-primary btn-lg'>Log In</button>
+                </form>
+            </div>
         </div>
     );
 }

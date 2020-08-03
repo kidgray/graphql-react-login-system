@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // STYLES
+import 'bootstrap/dist/css/bootstrap.css';
 import './client/styles/styles.scss';
 
 // COMPONENTS

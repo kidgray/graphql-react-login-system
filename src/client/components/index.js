@@ -5,9 +5,6 @@ import { createHttpLink } from 'apollo-link-http';
 // COMPONENTS & PAGES
 import App from './app/app.component.jsx';
 
-// ROUTERS
-import AppRouter from '../routers/AppRouter';
-
 // Instantiate an Apollo Link for use w/ Apollo Client
 const httpLink = createHttpLink({
     uri: 'http://localhost:5050'
@@ -23,9 +20,7 @@ const client = new ApolloClient({
 const ApolloApp = () => {
     return (
         <ApolloProvider client={client}>
-            <AppRouter>
-                <App />
-            </AppRouter>
+            <App />
         </ApolloProvider>
     );
 }

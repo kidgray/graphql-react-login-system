@@ -1,9 +1,11 @@
 import React from 'react';
 
+// ROUTERS
+import AppRouter from '../../routers/AppRouter';
+
 const App = () => {
     return (
-        <div>
-        </div>
+        <AppRouter></AppRouter>
     );
 }
 

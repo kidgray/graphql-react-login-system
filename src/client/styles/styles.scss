@@ -2,5 +2,10 @@
 @import './base/_base.scss';
 @import './base/_settings.scss';
 
-// COMPONENT STYLES
+// COMPONENT & PAGE STYLES
+@import '../components/app/app.styles.scss';
+@import '../components/menu-bar/menu-bar.styles.scss';
 @import '../pages/signup/signup.styles.scss';
+@import '../pages/login/login.styles.scss';
+@import '../pages/account/account.styles.scss';
+@import '../pages/not-found/not-found.styles.scss';
