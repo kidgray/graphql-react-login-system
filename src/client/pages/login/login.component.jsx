@@ -30,12 +30,12 @@ const LoginPage = () => {
     return (
         <div>
             <div className="row justify-content-center align-items-center">
-                <h1 className='login-header'>LOGIN</h1>
+                <h1 className='display-4 login-header'>LOGIN</h1>
             </div>
 
             <hr />
 
-            { error && <p className='login-error'>{ error }</p> }
+            { error && <p className='lead login-error'>{ error }</p> }
 
             <div className="form-div">
                 <form className='' onSubmit={handleSubmit}>

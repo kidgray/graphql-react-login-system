@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
 const SignUpPage = () => {
+    // State Hook for the registration fields
+    const [fields, setFields] = useState({
+        email: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        password: '',
+        confirmPassword: ''
+    });
+
     // State Hook for errors that occur during registration
     const [error, setError] = useState(null);
 
@@ -43,12 +53,12 @@ const SignUpPage = () => {
     return (
         <div>
             <div className="row justify-content-center align-items-center">
-                <h1 className='register-header'>REGISTER AN ACCOUNT</h1>
+                <h1 className='display-4 signup-header'>REGISTER</h1>
             </div>
 
             <hr />
 
-            { error && <p className='signup-error'>{ error }</p> }
+            { error && <p className='lead signup-error'>{ error }</p> }
 
             <div className="form-div">
                 <form className='' onSubmit={handleSubmit}>
