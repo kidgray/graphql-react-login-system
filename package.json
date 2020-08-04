@@ -36,5 +36,6 @@
     "client": "webpack-dev-server",
     "server": "node ./src/server/server.js",
     "heroku-postbuild": "yarn run build"
-  }
+  },
+  "proxy": "https://merng-login-register-app.herokuapp.com/"
 }

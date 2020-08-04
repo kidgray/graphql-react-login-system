@@ -7,7 +7,7 @@ import App from './app/app.component.jsx';
 
 // Instantiate an Apollo Link for use w/ Apollo Client
 const httpLink = createHttpLink({
-    uri: 'http://localhost:5050'
+    uri: 'https://merng-login-register-app.herokuapp.com/'
 });
 
 // Create the instance of ApolloClient
