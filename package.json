@@ -1,6 +1,5 @@
 {
   "name": "graphql-react-login-system",
-  "homepage": "https://kidgray.github.io/graphql-react-login-system",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/kidgray/graphql-react-login-system.git",
@@ -16,7 +15,6 @@
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.5.0",
     "css-loader": "^4.2.0",
-    "gh-pages": "^3.1.0",
     "graphql": "^15.3.0",
     "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
@@ -32,11 +30,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "webpack --mode=development",
+    "start": "node ./src/server/server.js",
+    "webpack-start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "client": "webpack-dev-server",
     "server": "node ./src/server/server.js",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d public"
+    "heroku-postbuild": "yarn run build"
   }
 }

@@ -14,7 +14,6 @@ const AppRouter = () => {
         <BrowserRouter>
             <MenuBar />
             <Switch>
-                <Route path="/graphql-react-login-system" />
                 <Route exact path="/login" component={LoginPage} />
                 <Redirect exact from="/" to="/login" />
                 <Route exact path="/account" component={AccountPage} />
