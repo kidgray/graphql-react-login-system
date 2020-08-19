@@ -30,7 +30,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "node ./src/server/server.js",
+    "start": "nodemon ./src/server/server.js",
     "webpack-start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "client": "webpack-dev-server",

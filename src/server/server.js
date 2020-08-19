@@ -11,7 +11,7 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers/index');
 
 // Create instance of ApolloServer
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ cors: true, typeDefs, resolvers });
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_CONN_STRING, { useUnifiedTopology: true, useNewUrlParser: true})
